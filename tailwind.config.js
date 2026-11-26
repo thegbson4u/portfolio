@@ -4,58 +4,48 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        butter: {
-          50: '#FFFEF5',
-          100: '#FDFCEB',
-          200: '#FAF6CE', // Primary reference background
-          300: '#F5EFB5',
-          400: '#EEE69B',
-          500: '#E2D679',
-          600: '#C7B753',
+        dark: {
+          bg: '#0E0E10',
+          card: '#161619',
+          'card-hover': '#1C1C21',
+          border: 'rgba(255, 255, 255, 0.12)',
+          'border-subtle': 'rgba(255, 255, 255, 0.08)',
+          text: '#F4F4F6',
+          muted: '#9A9AA3',
         },
-        navy: {
-          950: '#070824',
-          900: '#0B0D38',
-          800: '#11134F', // Primary typography & borders
-          700: '#1D2175',
-          600: '#2A3099',
-          500: '#3F47BE',
-          400: '#646BD7',
-          300: '#9499E5',
-          200: '#C5C7F2',
-          100: '#E4E5FA',
+        light: {
+          bg: '#FAF8F8',
+          card: '#FFFFFF',
+          'card-hover': '#F5F2F2',
+          border: 'rgba(20, 21, 28, 0.12)',
+          'border-subtle': 'rgba(20, 21, 28, 0.06)',
+          text: '#14151C',
+          muted: '#5C5E6B',
         },
-        signal: {
-          500: '#D94E1F',
-          600: '#B83A0F',
-          DEFAULT: '#D94E1F',
-        },
-        labteal: {
-          500: '#0F766E',
-          600: '#0D625C',
-          DEFAULT: '#0F766E',
+        rose: {
+          accent: '#E05A87',
+          deep: '#C83E6B',
+          soft: '#F48EAC',
+          dark: '#B02C58',
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        display: ['Plus Jakarta Sans', 'Cabinet Grotesk', 'sans-serif'],
+        serif: ['"Instrument Serif"', '"Playfair Display"', 'Georgia', 'serif'],
+        script: ['"Caveat"', 'cursive'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'Fira Code', 'monospace'],
       },
-      letterSpacing: {
-        tighter: '-0.04em',
-        tight: '-0.02em',
+      maxWidth: {
+        editorial: '840px',
       },
       borderWidth: {
+        '1': '1px',
         '1.5': '1.5px',
       },
-      boxShadow: {
-        'brutal': '4px 4px 0px 0px #11134F',
-        'brutal-sm': '2px 2px 0px 0px #11134F',
-        'brutal-lg': '6px 6px 0px 0px #11134F',
-      }
     },
   },
   plugins: [],

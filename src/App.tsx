@@ -1,66 +1,53 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Navigation } from './components/common/Navigation';
-import { Footer } from './components/common/Footer';
-import { ScrollToTop } from './components/common/ScrollToTop';
+import { ThemeProvider } from './context/ThemeContext';
+import { Navbar } from './components/navigation/Navbar';
+import { ProfileHeroCard } from './components/home/ProfileHeroCard';
+import { StreakAndGitHubCard } from './components/home/StreakAndGitHubCard';
+import { WhoIsPrinceSection } from './components/home/WhoIsPrinceSection';
+import { ExperienceAccordionCard } from './components/home/ExperienceAccordionCard';
+import { ProjectsListSection } from './components/home/ProjectsListSection';
+import { RoboticsShowcaseSection } from './components/home/RoboticsShowcaseSection';
+import { SocialAndFooterCta } from './components/home/SocialAndFooterCta';
 import { AssetManifestModal } from './components/common/AssetManifestModal';
-
-import { HomePage } from './pages/HomePage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { RoboticsPage } from './pages/RoboticsPage';
-import { VenturesPage } from './pages/VenturesPage';
-import { ExperiencePage } from './pages/ExperiencePage';
-import { ContactPage } from './pages/ContactPage';
-
-const AnimatedRoutes: React.FC = () => {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.22, ease: 'easeInOut' }}
-        className="flex-1 w-full"
-      >
-        <Routes location={location}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/robotics" element={<RoboticsPage />} />
-          <Route path="/ventures" element={<VenturesPage />} />
-          <Route path="/experience" element={<ExperiencePage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-[#FAF6CE] text-[#11134F] font-sans antialiased selection:bg-[#11134F] selection:text-[#FAF6CE] flex flex-col justify-between">
-        <ScrollToTop />
-        
-        {/* Global Persistent Navigation Header */}
-        <Navigation />
+    <ThemeProvider>
+      <div className="min-h-screen bg-[#FAF8F8] dark:bg-[#0E0E10] text-[#14151C] dark:text-[#F4F4F6] transition-colors duration-300 relative selection:bg-[#E05A87] selection:text-white overflow-x-hidden">
+        {/* Sticky Desktop Header & Mobile Floating Dock */}
+        <Navbar />
 
-        {/* Routed Main Viewports with Page Transitions */}
-        <main className="flex-1 flex flex-col">
-          <AnimatedRoutes />
-        </main>
+        {/* Centered Main Column with Subtle Dashed Vertical Guides on Desktop */}
+        <div className="max-w-[820px] mx-auto px-4 sm:px-6 relative sm:dashed-guide-l sm:dashed-guide-r min-h-[calc(100vh-4rem)] overflow-x-hidden">
+          {/* Main Content Flow */}
+          <main id="home" className="py-6 sm:py-8 space-y-6 sm:space-y-8 overflow-x-hidden">
+            {/* 1. Hero / Profile Card */}
+            <ProfileHeroCard />
 
-        {/* Global Persistent Footer */}
-        <Footer />
+            {/* 2. Sprint / Streak Matrix & GitHub Activity */}
+            <StreakAndGitHubCard />
 
-        {/* Accessible Production Asset Manifest Inspector */}
+            {/* 3. Who is Prince? & Tech Stack */}
+            <WhoIsPrinceSection />
+
+            {/* 4. Experience Accordion Card */}
+            <ExperienceAccordionCard />
+
+            {/* 5. Filterable Projects List */}
+            <ProjectsListSection />
+
+            {/* 6. Robotics & Autonomous Platforms */}
+            <RoboticsShowcaseSection />
+
+            {/* 7. Social Links & Footer CTA */}
+            <SocialAndFooterCta />
+          </main>
+        </div>
+
+        {/* Production Asset Manifest Inspector */}
         <AssetManifestModal />
       </div>
-    </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

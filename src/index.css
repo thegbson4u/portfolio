@@ -8,45 +8,86 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
+  /* Default Dark Mode */
+  html.dark body {
+    background-color: #0E0E10;
+    color: #F4F4F6;
+  }
+
+  /* Light Mode */
+  html:not(.dark) body {
+    background-color: #FAF8F8;
+    color: #14151C;
+  }
+
   body {
-    background-color: #FAF6CE;
-    color: #11134F;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
-    background-color: #11134F;
-    color: #FAF6CE;
+    background-color: #E05A87;
+    color: #ffffff;
   }
 
-  /* Custom scrollbar matching palette */
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #FAF6CE;
-    border-left: 1px solid rgba(17, 19, 79, 0.15);
+  html.dark ::-webkit-scrollbar-track {
+    background: #0E0E10;
+  }
+
+  html:not(.dark) ::-webkit-scrollbar-track {
+    background: #FAF8F8;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #11134F;
-    border-radius: 4px;
+    background: #E05A87;
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #1D2175;
+    background: #C83E6B;
   }
 }
 
+/* Custom dashed utility styling */
+.dashed-box {
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+}
+html:not(.dark) .dashed-box {
+  border: 1px dashed rgba(20, 21, 28, 0.14);
+}
+
+.dashed-guide-l {
+  border-left: 1px dashed rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .dashed-guide-l {
+  border-left: 1px dashed rgba(20, 21, 28, 0.08);
+}
+
+.dashed-guide-r {
+  border-right: 1px dashed rgba(255, 255, 255, 0.08);
+}
+html:not(.dark) .dashed-guide-r {
+  border-right: 1px dashed rgba(20, 21, 28, 0.08);
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .animate-spin-slow {
